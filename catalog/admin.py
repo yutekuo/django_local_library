@@ -40,6 +40,6 @@ class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ("status", "due_back")
     fieldsets = (
         (None, {"fields": ("book", "imprint", "id")}),
-        ("Availability", {"fields": ("status", "due_back")}),
+        ("Availability", {"fields": ("status", "due_back", "borrower")}),
     )
-    list_display = ("book", "status", "due_back", "id")
+    list_display = ("book", "status", "borrower", "due_back", "id")
