@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+{% block content %}
+  <h1>Delete Book: {{ book }}</h1>
+  {% if book.book_instance.all %}
+    <p>You can't delete this book until all their copies have been deleted:</p>
+    {% for copy in book.book_instance.all %}
+      <hr />
+      <p class="{% if copy.status == 'a' %}text-success {% elif copy.status == 'm' %}text-danger {% else %}text-warning{% endif %}">
+        {{ copy.get_status_display }}
+      </p>
+      {% if copy.status != 'a' %}
+        <p>
+          <strong>Due to be returned:</strong> {{ copy.due_back }}
+        </p>
+      {% endif %}
+      <p>
+        <strong>Imprint:</strong> {{ copy.imprint }}
+      </p>
+      <p class="text-muted">
+        <strong>Id:</strong> {{ copy.id }}
+      </p>
+    {% endfor %}
+  {% else %}
+    <p>Are you sure you want to delete the book?</p>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Yes, delete." action="" />
+    </form>
+  {% endif %}
+{% endblock content %}
