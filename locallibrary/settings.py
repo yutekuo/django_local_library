@@ -36,8 +36,15 @@ SECRET_KEY = os.environ.get(
 # DEBUG = True
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["yutekuo.pythonanywhere.com", "127.0.0.1"]
-CSRF_TRUSTED_ORIGINS = ["https://yutekuo.pythonanywhere.com"]
+ALLOWED_HOSTS = [
+    "yutekuo.pythonanywhere.com",
+    "127.0.0.1",
+    "djangolocallibrary-production-5e22.up.railway.app/",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://yutekuo.pythonanywhere.com",
+    "https://djangolocallibrary-production-5e22.up.railway.app/",
+]
 
 
 # Application definition
